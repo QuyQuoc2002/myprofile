@@ -7,10 +7,10 @@
   <title>QuocPQ.dev</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="images/code.png" type="image/x-icon">
-  <script defer src="js/script.js"></script>
-
   <!-- font awesome -->
-  <link rel="stylesheet" href="fontawesome-free-6.4.0-web/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -251,14 +251,14 @@
   <!-- contact section design -->
   <section class="contact" id="contact">
     <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i:1;"></span></h2>
-    <form action="">
+    <form id="myForm">
       <div class="input-box">
         <div class="input-field">
-          <input type="text" placeholder="Full Name" required>
+          <input name="fullName" type="text" placeholder="Full Name" required>
           <span class="focus"></span>
         </div>
         <div class="input-field">
-          <input type="text" placeholder="Email Address">
+          <input name="emailAddress" type="text" placeholder="Email Address">
           <span class="focus"></span>
         </div>
         <span class="animate scroll" style="--i:3;"></span>
@@ -266,22 +266,22 @@
 
       <div class="input-box">
         <div class="input-field">
-          <input type="text" placeholder="Mobile" required>
+          <input name="mobile" type="text" placeholder="Mobile" required>
           <span class="focus"></span>
         </div>
         <div class="input-field">
-          <input type="text" placeholder="Email Subject">
+          <input name="emailSubject" type="text" placeholder="Email Subject">
           <span class="focus"></span>
         </div>
         <span class="animate scroll" style="--i:5;"></span>
       </div>
       <div class="textarea-field">
-        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
+        <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
         <span class="focus"></span>
         <span class="animate scroll" style="--i:7;"></span>
       </div>
       <div class="btn-box btns">
-        <button type="submit" class="btn">Submit</button>
+        <button type="button" onclick='SubForm()' class="btn">Submit</button>
         <span class="animate scroll" style="--i:9;"></span>
       </div>
     </form>
@@ -294,9 +294,27 @@
     </div>
 
     <div class="footer-text">
-      <p><i class="far fa-clock fa-fw"></i><span id=clock></span></p>  
+      <p><i class="far fa-clock fa-fw"></i><span id=clock></span></p>
     </div>
   </footer>
 </body>
+<script src="js/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script>
+  function SubForm() {
+    $.ajax({
+      url: "https://api.apispreadsheets.com/data/G6Bwg7WakcW2F3y5/",
+      type: "post",
+      data: $("#myForm").serializeArray(),
+      success: function () {
+        alert("Your message submitted :)")
+      },
+      error: function () {
+        alert("There was an error :(")
+      }
+    });
+  }
+</script>
 
 </html>
